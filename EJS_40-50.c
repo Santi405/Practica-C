@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
 
 //  EJ 41
 int ej41(){
@@ -116,8 +117,10 @@ int ej45(){
     for (int i = 0; i < 20; i++){
         printf("Ingrese el caracter Nro %d: ", i+1);
 
-        // Se cambia el scanf porque sino detecta el enter como un caracter
-        scanf("%[^\n]%*c", &c);
+
+        // Se lee el caracter, si es un \n se lee de nuevo, el while está vacio
+        while ((c = getchar()) == '\n');
+
         switch (c)
         {
         case 'a':
@@ -140,13 +143,56 @@ int ej45(){
     return 0;
 }
 
+int ej45B(){
+    char str[20];
+    int contA = 0, contV = 0;
+
+    printf("Ingrese el string: ");    
+    scanf("%s", &str);
+
+    for (int i = 0; i < strlen(str); i++){
+        
+        switch (str[i])
+        {
+        case 'a':
+            contA++;
+            break;
+            
+        case 'e':
+        case 'i':
+        case 'o':
+        case 'u':
+            contV++;
+            break;
+
+        default:
+            break;
+        }
+    }
+
+    printf("\nCant 'A's:\t %d \nCant vocales:\t %d", contA, contV);
+
+    return 0;
+}
 
 
+int ej46(){
+    char week[7][10] = {"Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"};
+    int num = 1;
+    
+    printf("Ingrese el numero (0 para salir): ");
+    scanf("%d", &num);
+    while (num != 0){
+        printf("El dia de la semana es: %s", week[num-1]);
+        printf("\nIngrese el numero (0 para salir): ");
+        scanf("%d", &num);
+    }
+}
 
 
 
 
 int main(){
     system("cls");
-    ej45();
+    ej46();
 }
