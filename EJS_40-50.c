@@ -1,7 +1,28 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
 #include <windows.h>
+
+int ej35b(){
+  char caracter;
+
+  while ((caracter = getchar()) != EOF){}
+
+  printf("\nFin de ingreso de texto.\n");
+  return 0;
+}
+
+int alba(){
+    char caracter, str[100];
+
+    for (int i = 0; caracter = getchar() != '*'; i++){
+        str[i] = caracter;
+    }
+    printf("%s", str);
+
+}
+
 
 //  EJ 41
 int ej41(){
@@ -376,10 +397,201 @@ int ej57(){
     }
 }
 
+int ej63(){
+    int strInt[1000], num, suma = 0;
 
-int main(){
-    system("cls");
-    ej57();
+    for(int i = 0; i < 1000; i++){
+        printf("Ingrese el numero %d: ", i+1);
+        scanf("%d", &strInt[i]);
+    }
 
-    return 0;
+    printf("Ingrese el numero: ");
+    scanf("%d", &num);
+
+    for(int i = 0; i < 1000; i++){
+        if (strInt[i] >= num){
+            suma += strInt[i];
+        }
+    }
+
+    printf("La sumatoria de los numeros mayores que %d es: %d", num, suma);
+}
+
+// Ej 87
+int cubo (int base){
+    return base*base*base;
+}
+
+void ej87(){
+    int num;
+
+    do{
+        printf("Ingrese un numero entre 1 y 5: ");
+        scanf("%d", &num);
+    } while (num < 1 || num > 5);
+    
+    printf("El cubo de %d es: %d", num, cubo(num));
+}
+
+// Ej 90
+int sumar(int a, int b){
+    return a+b;
+}
+int restar(int a, int b){
+    return a-b;
+}
+int mult(int a, int b){
+    return a*b;
+}
+int dividir(int a, int b){
+    return a/b;
+}
+
+int ej90(){
+    int a, b, opc;
+    int res;
+
+    printf("\nIngrese un numero entre 1 y 5: ");
+    scanf("%d", &a);
+    printf("Ingrese un numero entre 1 y 5: ");
+    scanf("%d", &b);
+
+    printf("\n 1- SUMAR \n 2- RESTAR \n 3- MULTIPLICAR \n 4- DIVIDIR \n 5- SALIR \n\n Elija una opcion: ");
+    scanf("%d", &opc);
+
+    switch (opc){
+        case 1:
+            res = sumar(a,b);
+            break;
+        case 2:
+            res = restar(a,b);
+            break;
+        case 3:
+            res = mult(a,b);
+            break;
+        case 4:
+            res = dividir(a,b);
+            break;
+        default:
+            return 0;
+    }
+    printf("\nEl resultado es %2.f.");
+    ej90();
+}
+
+// ej91()
+#define pi 3.1416
+float calArea(int r){
+    return r * r * pi;
+}
+float calCirc(int r){
+    return 2 * r * pi;
+}
+
+void ej91(){
+    int r;
+    float circ, area;
+
+    printf("Ingrese el radio: ");
+    scanf("%d", &r);
+
+    circ = calCirc(r);
+    area = calArea(r);
+
+    printf("La circunferencia es: \t %.2f \nEl area es: \t\t %.2f", circ, area);
+}
+
+// ej 92
+float media (int suma){
+    return suma / 10.0;
+}
+
+int maximo(int list[10]){
+    int max = 0;
+    for (int i = 0; i < 10; i++){
+        if (list[i] > max){
+            max = list[i];
+        }
+    }
+
+    return max;
+}
+
+
+void ej92(){
+    int lista[10], max, x, suma = 0;
+    float prom;
+
+    for(int i = 0; i < 10; i++){
+        printf("Ingrese el valor %d: ", i+1);
+        scanf("%d", &x);
+        lista[i] = x;
+        suma += x;
+    }
+    prom = media (suma);
+    max = maximo(lista);
+
+    printf("\nLa suma es: \t\t%d", suma);
+    printf("\nEl promedio es: \t%.2f", prom);
+    printf("\nEl maximo valor es: \t%d", max);
+}
+
+void ej93(){    
+    int arr[10] = {23, 5, 98, 65, 3, 55, 73, 9, 21, 85}, *p;
+    p = arr;
+    printf ( " %d\n", arr[*(p + 7)]); //R: ____________________________
+    printf ( " %d\n", *arr + 3); //R: ____________________________
+    printf ( " %d\n", *p++); //R: ____________________________
+    printf (" %d\n", *(arr + 1)); //R: ____________________________
+    printf (" %d\n", (*p)++); //R: ____________________________
+    printf (" %d\n", *p); //R: ____________________________
+    printf (" %d\n", *p++); //R: ____________________________
+    printf (" %d\n", *p);
+}
+
+// ej98
+
+int verificaDigitos(char *cad, int *cantD){
+    int cantC = strlen(cad);
+    for (int i = 0; i < cantC; i++){
+        if (isdigit(cad[i])) (*cantD)++;
+    }
+
+    return cantC;
+}
+
+void ej98(){
+    char cad[100];
+    int cantD = 0, cantC;
+
+    printf("Ingrese la cadena: ");
+    scanf("%s", cad);
+
+    cantC = verificaDigitos(cad, &cantD);
+
+    printf("\nLa cantidad de digitos es: %d", cantD);
+    printf("\nLa cantidad de alfanumericos es: %d", cantC);
+}
+
+// ej99
+char * verif (char *);
+
+void ej99(){
+    char cad[100];
+    printf("Ingrese la cadena: ");
+    scanf("%s", &cad);
+
+    printf("%s", verif(cad));
+}
+
+char * verif (char * cad){
+    for (int i = 0; i < strlen(cad); i++){
+        if (isdigit(cad[i])) return "NO";
+    }
+    return "SI";
+}
+
+
+int main() {
+    ej99();
 }
