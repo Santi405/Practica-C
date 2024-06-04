@@ -417,6 +417,60 @@ int ej63(){
     printf("La sumatoria de los numeros mayores que %d es: %d", num, suma);
 }
 
+//ej 85
+struct alumno{
+    char apellido[20];
+    int nota;
+    int legajo;
+};
+
+void ej85(){
+    int leg, opc = 1, nota;
+    char name[20];
+    struct alumno alumnos[8];
+    
+    for (int i = 0; i < 8; i++){
+        
+        printf("\nIngrese el apellido del alumno numero %i: ", i+1);
+        scanf("%s", &name);    
+        strcpy(alumnos[i].apellido, name);
+        
+        printf("Ingrese su legajo: ", i+1);
+        scanf("%d", &leg);    
+        alumnos[i].legajo = leg;
+        
+        printf("Ingrese su nota: ", i+1);
+        scanf("%d", &leg);    
+        alumnos[i].nota = leg;
+        
+    }
+    
+    
+     while (opc != 0){
+        printf("Desea cambiar algo? (1/0): ");
+        scanf("%d", &opc);
+        
+        if (opc == 1){
+            printf("Ingrese el legajo: ");
+            scanf("%d", &leg);
+            
+            for (int i = 0; i < 8; i++){
+                if (alumnos[i].legajo == leg){
+                    printf("Ingrese la nueva nota de %s: ", alumnos[i].apellido);
+                    scanf("%d", &nota);
+                    alumnos[i].nota = nota;
+                    }
+            }
+        }
+     }
+        
+    printf("\n");
+    for (int i = 0; i < 8; i++){
+        printf("Alumno %d: \n\tNombre: \t%s \n\tLegajo: \t%d \n\tNota: \t\t%d \n", i+1, alumnos[i].apellido, alumnos[i].legajo, alumnos[i].nota);
+    }    
+}
+
+
 // Ej 87
 int cubo (int base){
     return base*base*base;
