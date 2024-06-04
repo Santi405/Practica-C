@@ -591,7 +591,72 @@ char * verif (char * cad){
     return "SI";
 }
 
+//ej 100
+void carga(char *, int *);
+void esVocal(char, int *);
+int esConsonante(char);
+
+void ej100(){
+    char cad[100];
+    int cont = 0;
+
+    
+    carga(cad, &cont);
+    printf("%s", cad);
+}
+
+void carga(char *cad, int *cont){
+    printf("Ingrese la cadena: ");
+
+    for(*cont = 0; *cont <= 999 && (cad[*cont] = getchar()) != EOF; *cont++);
+    cad[*cont] = '\0';
+}
+
+
+// ej101
+
+char* carga101 (int *);
+char* cambia_texto (char *, int);
+
+void ej101(){
+    int cont;
+    char *pcad, *changePcad;
+
+    pcad = carga101(&cont);
+    changePcad = cambia_texto(pcad, cont);
+
+    printf ("\nEl texto: %s\n", pcad);
+    printf ("\ncambiado se lee: %s\n", changePcad);
+    system ("pause");
+
+}
+
+char* carga101 (int *cont){
+    static char cad [100];
+    *cont = 0;
+    printf("(101) Ingrese la cadena: ");
+    while (*cont <= 99 && (cad[*cont] = getchar()) != EOF){
+        *cont++;
+    }
+    cad[*cont] = '\0';
+
+    return cad;
+
+}
+
+char* cambia_texto (char *cad, int cont){
+    static char cambiada[100];
+
+    for (int i = 0; i < strlen(cad); i++){
+        if (isdigit(cad[i])) cambiada[i] = '*';
+    }
+
+    return cambiada;
+}
+
+
+
 
 int main() {
-    ej99();
+    ej101();
 }
