@@ -470,6 +470,53 @@ void ej85(){
     }    
 }
 
+// ej86
+struct alumno{
+    char apellido[20];
+    int nota;
+    int promedio;
+};
+
+int ej86(){
+    int leg, opc = 1, promedio, aprob = 0, reg = 0, des = 0;
+    char name[20];
+    struct alumno alumnos[8];
+    
+    for (int i = 0; i < 8; i++){
+        
+        printf("\nIngrese el apellido del alumno numero %i: ", i+1);
+        scanf("%s", &name);    
+        strcpy(alumnos[i].apellido, name);
+        
+        printf("Ingrese su legajo: ", i+1);
+        scanf("%d", &leg);    
+        alumnos[i].legajo = leg;
+        
+        printf("Ingrese su nota: ", i+1);
+        scanf("%d", &leg);    
+        alumnos[i].nota = leg;
+        
+    }
+    
+    
+    for (int i = 0; i < 8; i++){
+        if (alumnos[i].promedio >= 7){
+            aprob++;
+        }
+        else if(alumnos[i].promedio >= 4){
+            reg++;
+        }
+        else{
+            des++;
+        }
+    }
+        
+    printf("\n");
+    for (int i = 0; i < 8; i++){
+        printf("Alumno %d: \n\tNombre: \t%s \n\tLegajo: \t%d \n\tNota: \t\t%d \n", i+1, alumnos[i].apellido, alumnos[i].legajo, alumnos[i].nota);
+    }    
+    return 0;
+}
 
 // Ej 87
 int cubo (int base){
